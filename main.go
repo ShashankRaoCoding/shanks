@@ -1,12 +1,14 @@
 package main
 
 import (
+	"os" 
 	"fmt" 
-	"os"
+	"shanks/make" 
 )
 
-var functions = map[string]func([]string){
-	"mkfile": mkfile, 
+var functions = map[string]func([]string)error{
+	"make": make.Main, 
+	"csv": csv.Main, 
 }
 
 func main() {
@@ -19,30 +21,16 @@ func main() {
 		os.Exit(1) 
 	}
 
-	f(
+	err := f(
 		os.Args[2:], 
 	) 
-	
-}
 
-
-func mkfile(filenames []string) {
-		
-	// filenames := os.Args[1:]
-	for _, i := range filenames {
-		file, err := os.Create(i)
-		if err != nil {
-			fmt.Println(err.Error()) 
-		} else {
-			var bytes []byte 
-			for range 40 {
-				bytes = append(bytes, '\n') 
-			}
-			file.Write(bytes) 
-			file.Close() 
-		}
+	if err != nil {
+		fmt.Println(err.Error())
+		os.Exit(1) 
+	} else {
+		os.Exit(0) 
 	}
-	
 }
 
 
