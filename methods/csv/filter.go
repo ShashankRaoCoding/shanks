@@ -37,12 +37,13 @@ func filterRows(args []string) error {
 	}
 
 	columnName := args[0]
-	condition := args[1]
+	operator:= args[1]
+	value := args[2] 
 
 	cmd := exec.Command(
 		"python",
 		"-c",
-		fmt.Sprintf(rowsScript, columnName, condition),
+		fmt.Sprintf(rowsScript, columnName, oeprator, value),
 	)
 
 	cmd.Stdin = os.Stdin
@@ -90,7 +91,7 @@ import sys
 import pandas
 
 data = pandas.read_csv(sys.stdin)
-data = data[data['%s']%s]
+data = data[data['%s'] %s '%s']
 data.to_csv(sys.stdout, index=False)
 `
 
