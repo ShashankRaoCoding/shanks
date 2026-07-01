@@ -3,14 +3,14 @@ package main
 import (
 	"os" 
 	"fmt" 
-	"yoru/globals" 
+	"yoru/methods" 
 )
 
 func main() {
 
 	process := os.Args[1] 
 	
-	m, ok := globals.Methods[process]
+	m, ok := methods.Methods[process]
 	if ok == false {
 		fmt.Println("Function does not exist")
 		os.Exit(1) 

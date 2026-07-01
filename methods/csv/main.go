@@ -1,21 +1,23 @@
 package csv
 
 import (
-	"os"
-	"bufio"
-	"os/exec" 
-	"yoru/globals" 
+	// "os"
+	// "bufio"
+	// "os/exec" 
+	// "yoru/globals" 
+	"fmt" 
+	"yoru/methods/csv/filter" 
 )
 
-var Methods = make(map[string]func([]string)error) 
+var Methods = make(map[string]func([]string)error)
 
 func Init() {
-	globals.Methods["csv"] = csv
+	Methods["filter"] = filter.Main 
 }
 
 // format: shanks csv filter by columnName where condition
-func csv(args []string) error {
-	var method, args := args[0], args[1:] 
+func Main(args []string) error {
+	method, args := args[0], args[1:] 
 	
 	m, ok := Methods[method] 
 	if ok == false {

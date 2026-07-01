@@ -1,19 +1,14 @@
-package make
-
+package file
 
 import (
-	"strings"
+	// "strings"
 	"fmt" 
 	"os/exec" 
 	"os" 
-	"yoru/globals"
+	// "yoru/globals" 
 )
 
-func Init() {
-	globals.Methods["mkfile"] = mkfile
-}
-
-func mkfile(filenames [] string) error {
+func Main(filenames [] string) error {
 	var err error 
 	for _, name := range filenames {
 		cmd := exec.Command("python", "-c", fmt.Sprintf(script, name)) 

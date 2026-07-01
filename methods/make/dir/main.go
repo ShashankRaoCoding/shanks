@@ -1,21 +1,16 @@
-package make
-
+package dir 
 
 import (
 	// "strings"
-	"fmt" 
+	// "fmt" 
 	"os/exec" 
 	"os" 
-	"yoru/globals" 
+	// "yoru/globals" 
 )
 
-func Init() {
-	globals.Methods["mkdir"] = mkdir
-}
-
-func mkdir(dirnames [] string) error {
+func Main(dirnames [] string) error {
 	var err error
-	cmd := exec.Command("mkdir", "-p", dirnames...) 
+	cmd := exec.Command("mkdir", append([]string{"-p"}, dirnames...) ... ) 
 	cmd.Stdout = os.Stdout 
 	cmd.Stderr = os.Stderr 
 	err = cmd.Start() 
