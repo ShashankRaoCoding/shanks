@@ -6,12 +6,12 @@ import (
 	// "os/exec" 
 	// "yoru/globals" 
 	"fmt" 
-	"yoru/methods/csv/filter" 
+	"yoru/csv/filter" 
 )
 
 var Methods = make(map[string]func([]string)error)
 
-func Init() {
+func init() {
 	Methods["filter"] = filter.Main 
 }
 

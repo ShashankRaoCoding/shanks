@@ -3,16 +3,26 @@ package main
 import (
 	"os" 
 	"fmt" 
-	"yoru/methods" 
+	mk "yoru/make" 
+	"yoru/csv"
 )
+
+var Methods = make(map[string]func([]string)error) 
+
+func init() {
+	Methods["make"] = mk.Main
+	Methods["csv"] = csv.Main
+}
 
 func main() {
 
-	process := os.Args[1] 
+	args := os.Args[1:] 
+
+	method, args := args[0], args[1:] 
 	
-	m, ok := methods.Methods[process]
+	m, ok := Methods[method]
 	if ok == false {
-		fmt.Println("Function does not exist")
+		fmt.Printf("Function %s does not exist \n", method)
 		os.Exit(1) 
 	}
 

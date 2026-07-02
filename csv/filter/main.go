@@ -9,7 +9,7 @@ import (
 
 var Methods = make(map[string]func([]string) error) 
 
-func Init() {
+func init() {
 	Methods["cols"] = filterCols 
 	Methods["rows"] = filterRows 
 }

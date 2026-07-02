@@ -11,7 +11,7 @@ import (
 func Main(filenames [] string) error {
 	var err error 
 	for _, name := range filenames {
-		cmd := exec.Command("python", "-c", fmt.Sprintf(script, name)) 
+		cmd := exec.Command("sh", "-c", fmt.Sprintf("python -c 'for _ in range(45): print()' > %s", name)) 
 		cmd.Stdout = os.Stdout 
 		cmd.Stderr = os.Stderr 
 		err = cmd.Start() 
@@ -29,11 +29,6 @@ func Main(filenames [] string) error {
 	return nil 
 }
 
-var script string = `
-file = open(%s, "w")
-file.write("\n".join("" for i in range(45)))
-file.close() 
-`
 
 
 

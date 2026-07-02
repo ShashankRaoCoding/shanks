@@ -1,14 +1,14 @@
 package make
 
 import (
-	"yoru/methods/make/dir" 
-	"yoru/methods/make/file" 
+	"yoru/make/dir" 
+	"yoru/make/file" 
 	"fmt" 
 )
 
 var Methods = make(map[string]func([]string)error)
 
-func Init() {
+func init() {
 	Methods["file"] = file.Main
 	Methods["dir"] = dir.Main 
 }
